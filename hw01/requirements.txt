@@ -1,0 +1,5 @@
+torch==2.2.1
+torchvision==0.17.1
+optuna==4.2.1
+tqdm==4.64.0
+pandas==1.4.2
