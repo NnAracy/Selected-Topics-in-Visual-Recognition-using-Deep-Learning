@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(description="Train Model")
 parser.add_argument("--epochs", type=int, default=10)
 parser.add_argument("--batch-size", type=int, default=64)
 parser.add_argument("--resume-training", action="store_true")
+parser.add_argument("--model-name", type=str, default="resnext101")
 args = parser.parse_args()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -23,7 +24,7 @@ train_loader, val_loader, _, train_size, val_size, _ = get_dataloaders(
     "./data", batch_size=args.batch_size
 )
 
-model = get_model(num_classes=100, model_name="resnext101",
+model = get_model(num_classes=100, model_name=args.model_name,
                   device=device, dropout=0.3)
 
 if torch.cuda.device_count() > 1:
@@ -37,7 +38,7 @@ scaler = GradScaler()
 
 
 def save_checkpoint(model, optimizer, scheduler, epoch, best_acc):
-    checkpoint_file = os.path.join(save_dir, f"resnet101_checkpoint_e{epoch}.pth")
+    checkpoint_file = os.path.join(save_dir, f"{args.model_name}_checkpoint_e{epoch}.pth")
     state_dict = model.module.state_dict() if isinstance(model, nn.DataParallel) else model.state_dict()
 
     torch.save({
@@ -121,7 +122,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer,
         if val_acc1 > best_acc:
             best_acc = val_acc1
             state_dict = model.module.state_dict() if isinstance(model, nn.DataParallel) else model.state_dict()
-            torch.save(state_dict, os.path.join(save_dir, "best_resnext101.pth"))
+            torch.save(state_dict, os.path.join(save_dir, f"best_{args.model_name}.pth"))
             print(f"Best model saved with Val Acc@1: {val_acc1*100:.2f}%")
 
         if epoch % 5 == 0:

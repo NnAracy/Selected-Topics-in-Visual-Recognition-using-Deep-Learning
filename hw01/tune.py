@@ -10,6 +10,7 @@ from model import get_model
 parser = argparse.ArgumentParser(description="Optuna Hyperparameter Tuning")
 parser.add_argument("--epochs", type=int, default=10)
 parser.add_argument("--trials", type=int, default=20)
+parser.add_argument("--model-name", type=str, default="resnet101")
 args = parser.parse_args()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -27,7 +28,7 @@ def objective(trial):
         "./data", batch_size=batch_size
     )
 
-    model = get_model(num_classes=100, model_name="resnet101",
+    model = get_model(num_classes=100, model_name=args.model_name,
                       device=device, dropout=dropout)
 
     if multi_gpu:
@@ -88,6 +89,6 @@ best_params = study.best_params
 print(f"Optuna best hyperparameters: {best_params}")
 print(f"Best validation accuracy: {study.best_value:.2f}%")
 
-with open("./best_hyperparams.txt", "w") as f:
+with open(f"./best_hyperparams_{args.model_name}.txt", "w") as f:
     f.write(f"Best Params: {best_params}\n")
     f.write(f"Best Validation Accuracy: {study.best_value:.2f}%\n")
