@@ -71,7 +71,7 @@ python ensemble.py
 ```
 
 ### Task 2
-- Generates pred.csv(number prediction result, in /work_dirs/ensemble_nms by default).
+- Generates pred.csv(number prediction result, in /work_dirs/ensemble_wbs by default).
 ```bash
 python solve.py
 ```
