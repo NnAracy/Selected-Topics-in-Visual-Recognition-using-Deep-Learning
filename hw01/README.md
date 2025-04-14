@@ -34,7 +34,7 @@ git clone https://github.com/NnAracy/Selected-Topics-in-Visual-Recognition-using
 ```bash
 cd Selected-Topics-in-Visual-Recognition-using-Deep-Learning/hw01
 ```
-- The dataset can be downloaded from [this link](https://drive.google.com/file/d/1fx4Z6xl5b6r4UFkBrn5l0oPEIagZxQ5u/view)
+- The dataset can be downloaded from [here](https://drive.google.com/file/d/1fx4Z6xl5b6r4UFkBrn5l0oPEIagZxQ5u/view)
 
 ## Performance Snapshot
 ![](./tab.png)

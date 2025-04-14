@@ -13,11 +13,10 @@ parser.add_argument(
     help='image id to visualize (default: all test images)'
 )
 parser.add_argument(
-    '--backbone',
+    '--work-dir',
     type=str,
-    default='r50',
-    choices=['r50', 'r101', 's50', 'x101'],
-    help='backbone type'
+    default='./work_dirs/ensemble_wbf',
+    help='work directory'
 )
 parser.add_argument(
     '--score-thr',
@@ -32,7 +31,7 @@ data_root = './nycu-hw2-data'
 test_dir = os.path.join(data_root, 'test')
 test_json = os.path.join(data_root, 'test.json')
 
-work_dir = f'./work_dirs/carafe-faster-rcnn_{args.backbone}'
+work_dir = args.work_dir
 pred_json = os.path.join(work_dir, 'results.bbox.json')
 save_dir = os.path.join(work_dir, 'vis')
 os.makedirs(save_dir, exist_ok=True)
