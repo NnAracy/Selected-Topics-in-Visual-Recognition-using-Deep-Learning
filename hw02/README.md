@@ -36,6 +36,8 @@ cd mmdetection/configs/svhn
 - The dataset can be downloaded from [here](https://drive.google.com/file/d/13JXJ_hIdcloC63sS-vF3wFQLsUP1sMz5/view)
 
 ## Training
+- Generates and keep the last 3 checkpoints in the corresponding work directory.
+
 - Single gpu
 ```bash
 python ../../tools/train.py carafe-faster-rcnn_{backbone}_bl_bfp.py --work-dir work_dirs/carafe-faster-rcnn_{backbone}
@@ -44,7 +46,6 @@ python ../../tools/train.py carafe-faster-rcnn_{backbone}_bl_bfp.py --work-dir w
 ```bash
 ../../tools/dist_train.sh carafe-faster-rcnn_{backbone}_bl_bfp.py {numebr_of_gpus} --work-dir work_dirs/carafe-faster-rcnn_{backbone}
 ```
-- The above commands generate the last 3 checkpoints in the corresponding work directory.
 
 ## Inference
 - Create a hand-crafted annotation file with blank annotations for test dataset.
