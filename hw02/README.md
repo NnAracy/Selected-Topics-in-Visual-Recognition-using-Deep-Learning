@@ -76,5 +76,5 @@ python ensemble.py
 python solve.py
 ```
 ## Performance Snapshot
-![](./tab.png)
-![](./rank.png)
+![](./figs/tab.png)
+![](./figs/rank.png)
